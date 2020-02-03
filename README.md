@@ -1,6 +1,8 @@
 # Redux Slices
 
+[![npm](https://img.shields.io/npm/v/@redux-toolset/slices.svg)](https://www.npmjs.com/package/@redux-toolset/slices)
 [![Build Status](https://travis-ci.org/redux-toolset/slices.svg?branch=master)](https://travis-ci.org/redux-toolset/slices)
+[![Codecov Coverage](https://img.shields.io/codecov/c/github/redux-toolset/slices/master.svg?style=flat-square)](https://codecov.io/gh/redux-toolset/slices/)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/redux-toolset/slices/issues)
 
 This package is yet another attempt to simplify redux state management for larger applications.
