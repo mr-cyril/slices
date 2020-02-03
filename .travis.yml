@@ -1,6 +1,4 @@
 language: node_js
 node_js: node
 cache: yarn
-install:
-  - npm ci --ignore-scripts
-script: npm run prepare
+script: yarn run prepare
