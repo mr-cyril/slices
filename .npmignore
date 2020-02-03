@@ -1,0 +1,15 @@
+.idea
+.babelrc
+.gitignore
+.npmignore
+.nyc_output
+.travis.yml
+.yarn
+.yarnrc
+.pnp.js
+coverage
+node_modules
+npm-debug.log
+src
+tests
+webpack*
