@@ -22,7 +22,8 @@ const slice1: ISlice<ISlice1State> = {
     b: {
       reducer: payloadReducer,
       actions: { custom: payloadReducer }
-    }
+    },
+    name:{reducer: payloadReducer}
   },
   initial: state.slice1
 };
@@ -55,7 +56,7 @@ describe(generateSelectorAndActions.name, () => {
   it("actions generated correctly", () => {
     expect(action).toBeTruthy();
     expect(getSegments(action)).toEqual(["slice1"]);
-    expect(Object.keys(action)).toEqual(["toString", "a", "b"]);
+    expect(Object.keys(action)).toEqual(["toString", "a", "b", "name_"]);
   });
 });
 

@@ -1,6 +1,6 @@
-import { ActionCreatorNode, getSegments, newActionCreator } from './actions';
-import { error, isObject, resolveFunction } from './utils';
-import { IReducerDetails } from './reducers';
+import { ActionCreatorNode, getSegments, newActionCreator } from "./actions";
+import { error, isObject, resolveFunction } from "./utils";
+import { IReducerDetails } from "./reducers";
 
 export type StateNodeName = string | number;
 export type StateNodePath = Array<StateNodeName>;
@@ -47,6 +47,19 @@ export interface ISlice<S = any> extends ISliceTree {
   readonly mountPoint?: StateNodePath;
 }
 
+function assign(obj: any, name: string, value: any) {
+  for (; ;) {
+    const descr=Object.getOwnPropertyDescriptor(obj, name);
+    if (!descr || descr.writable) {
+      obj[name] = value;
+      // this check is probably unnecessary, but extra caution doesn't hurt
+      if (obj[name] === value) break;
+    }
+    name = name + "_";
+  }
+  return value;
+}
+
 function createActions(
   parentAction: ActionCreatorNode,
   nodes?: SliceNodeMap,
@@ -54,18 +67,18 @@ function createActions(
 ) {
   if (nodes)
     for (const [name, node] of Object.entries(nodes)) {
-      const action = (parentAction[name] = newActionCreator([
+      const action = (assign(parentAction, name, newActionCreator([
         ...getSegments(parentAction),
         name
-      ]));
+      ])));
       createActions(action, node.nodes, node.actions);
     }
   if (actions)
     for (const name of Object.keys(actions))
-      parentAction[name] = newActionCreator([
+      assign(parentAction, name, newActionCreator([
         ...getSegments(parentAction),
         name
-      ]);
+      ]));
 }
 
 export function generateSelectorAndActions<S, A = ActionCreatorNode>(
@@ -113,7 +126,7 @@ export function mergeSlices(slices: Array<ISlice>): IStateShape {
     const existing = node.children && node.children[name];
     if (existing)
       if (existing.slice === slice) continue;
-      else error(`duplicate slices ${name} @ [/${mountPoint?.join('/')}]`);
+      else error(`duplicate slices ${name} @ [/${mountPoint?.join("/")}]`);
     const children = node.children || (node.children = {});
     children[name] = { slice, level: node.level + 1 };
   }

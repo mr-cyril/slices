@@ -296,10 +296,9 @@ Our definition of action creator is very similar to the [Redux Action Creator](h
 - action creator is a function, but is also an object with keys mapping nested action creators.
   This may seem like a poor design decision (and indeed it may be), but it produces expressive and readable action references.
   There is a side effect: `action creators` should not have names overlapping standard properties defined for the Javascript `function` object:
-  `length`, `name`, `apply`, `arguments`, `bind`, `call`, `caller`, `constructor`, `toString`, `hasOwnProperty`, `isPrototypeOf`, `propertyIsEnumerable`, `toLocaleString`, `valueOf`.
-  One of the possible ways to work around this issue is to prefix generated action creators with a fixed symbol (for example, an underscore - '\_') if the name clash is detected.
-  This is currently being considered, along with the other possible workarounds. For now it is advised to avoid the mentioned names.
-
+  `length`, `name`, `apply`, and others. The current workaround is to add an underscore ('_') to the action name if the clash is detected.
+  For example, the path `invoices/invoice/items/item/name` will generate action creator `action.invoices.invoice.items.item.name_`.
+  
 In the example above, the following action creators are generated:
 
 ```typescript
