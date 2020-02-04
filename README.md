@@ -298,7 +298,7 @@ Our definition of action creator is very similar to the [Redux Action Creator](h
   There is a side effect: `action creators` should not have names overlapping standard properties defined for the Javascript `function` object:
   `length`, `name`, `apply`, and others. The current workaround is to add an underscore ('_') to the action name if the clash is detected.
   For example, the path `invoices/invoice/items/item/name` will generate action creator `action.invoices.invoice.items.item.name_`.
-  
+
 In the example above, the following action creators are generated:
 
 ```typescript
