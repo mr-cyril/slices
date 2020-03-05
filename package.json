@@ -1,6 +1,6 @@
 {
   "name": "@redux-toolset/slices",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Builds application state shape from modular slices; auto-generates strongly typed selectors, action creators and reducers",
   "keywords": [
     "redux",
